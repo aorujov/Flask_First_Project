@@ -14,10 +14,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # turns off flask flask sq
 app.secret_key = 'abid'
 api = Api(app)
 
-@app.before_first_request
-def create_tables():
-    db.create_all()
-
 jwt = JWT(app, authenticate, identity)   # /auth
 ## Api works with resources, and every resource has to be a class
 
