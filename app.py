@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_restful import Api   # resource - student, items, piano, etc.
 from flask_jwt import JWT
@@ -7,9 +9,8 @@ from resources.user import UserRegister
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 
-
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # turns off flask flask sql_alchemy modification tracker, sql alchemy modification tracker is still on
 app.secret_key = 'abid'
 api = Api(app)
